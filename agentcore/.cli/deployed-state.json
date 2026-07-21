@@ -1,0 +1,17 @@
+{
+  "targets": {
+    "default": {
+      "resources": {
+        "runtimes": {
+          "montaiJoblibUtils": {
+            "runtimeId": "montaiJoblibUtils_montaiJoblibUtils-QJXLo03Jlv",
+            "runtimeArn": "arn:aws:bedrock-agentcore:us-east-1:015551053535:runtime/montaiJoblibUtils_montaiJoblibUtils-QJXLo03Jlv",
+            "roleArn": "arn:aws:iam::015551053535:role/AgentCore-montaiJoblibUti-ApplicationAgentMontaiJob-PaRD8fuJBphC"
+          }
+        },
+        "stackName": "AgentCore-montaiJoblibUtils-default",
+        "deployHash": "264b5b212ec66f90"
+      }
+    }
+  }
+}

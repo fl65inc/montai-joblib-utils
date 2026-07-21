@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.agentcore.aws.dev/v1/agentcore.json",
+  "name": "montaiJoblibUtils",
+  "version": 1,
+  "managedBy": "CDK",
+  "tags": {
+    "agentcore:created-by": "agentcore-cli",
+    "agentcore:project-name": "montaiJoblibUtils"
+  },
+  "runtimes": [
+    {
+      "name": "montaiJoblibUtils",
+      "description": "Montai compute discovery — search Lambda, Batch, SageMaker, Step Functions",
+      "build": "CodeZip",
+      "runtimeVersion": "PYTHON_3_12",
+      "entrypoint": "main.py",
+      "codeLocation": ".",
+      "networkMode": "PUBLIC",
+      "environment": {
+        "AGENT_OBSERVABILITY_ENABLED": "true"
+      }
+    }
+  ],
+  "memories": [],
+  "knowledgeBases": [],
+  "credentials": [],
+  "evaluators": [],
+  "onlineEvalConfigs": [],
+  "agentCoreGateways": [],
+  "policyEngines": [],
+  "configBundles": [],
+  "abTests": [],
+  "harnesses": [],
+  "datasets": [],
+  "payments": []
+}

@@ -1,0 +1,24 @@
+================================================================================
+AGENTCORE DEPLOY LOG
+Command: deploy
+Started: 2026-07-21T15:56:41.042Z
+================================================================================
+
+
+[11:56:41] STEP: Load deployment target
+[11:56:41] Status: SUCCESS
+[11:56:41] Duration: 6ms
+
+[11:56:41] STEP: Validate project
+[11:56:41] [ERROR] No AWS credentials configured.
+
+To fix this:
+  1. Run: aws login
+  2. Or set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables
+[11:56:41] Status: FAILED
+[11:56:41] Duration: 520ms
+
+================================================================================
+FAILED
+Total Duration: 534ms
+================================================================================

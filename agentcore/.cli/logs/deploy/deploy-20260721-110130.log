@@ -1,0 +1,39 @@
+================================================================================
+AGENTCORE DEPLOY LOG
+Command: deploy
+Started: 2026-07-21T15:01:30.945Z
+================================================================================
+
+
+[11:01:30] STEP: Load deployment target
+[11:01:33] Status: SUCCESS
+[11:01:33] Duration: 3.0s
+
+[11:01:33] STEP: Validate project
+[11:01:36] Status: SUCCESS
+[11:01:36] Duration: 2.3s
+
+[11:01:36] STEP: Build CDK project
+[11:01:39] Status: SUCCESS
+[11:01:39] Duration: 2.2s
+
+[11:01:39] STEP: Synthesize CloudFormation
+[11:02:02] Status: SUCCESS
+[11:02:02] Duration: 23.5s
+
+[11:02:02] STEP: Check bootstrap status
+[11:02:03] Status: SUCCESS
+[11:02:03] Duration: 755ms
+
+[11:02:03] STEP: Check stack status
+[11:02:04] Status: SUCCESS
+[11:02:04] Duration: 806ms
+
+[11:02:04] STEP: Run CDK diff
+[11:02:12] Status: SUCCESS
+[11:02:12] Duration: 8.7s
+
+================================================================================
+COMPLETED SUCCESSFULLY
+Total Duration: 42.0s
+================================================================================

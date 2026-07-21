@@ -1,0 +1,21 @@
+================================================================================
+AGENTCORE DEPLOY LOG
+Command: deploy
+Started: 2026-07-21T15:46:49.672Z
+================================================================================
+
+
+[11:46:49] STEP: Load deployment target
+[11:46:51] Status: SUCCESS
+[11:46:51] Duration: 2.0s
+
+[11:46:51] STEP: Validate project
+[11:46:51] [ERROR] /Users/jrowe/work/montai/on-demand-compute-ai/montai-joblib-utils-ai-mcp/agentcore/agentcore.json:
+  - runtimes[0].entrypoint: Must be a Python (.py) or TypeScript (.ts/.js) file path with optional handler (e.g., "main.py:handler" or "index.ts")
+[11:46:51] Status: FAILED
+[11:46:51] Duration: 3ms
+
+================================================================================
+FAILED
+Total Duration: 2.0s
+================================================================================

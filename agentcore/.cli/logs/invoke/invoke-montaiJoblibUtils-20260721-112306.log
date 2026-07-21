@@ -1,0 +1,32 @@
+================================================================================
+AGENTCORE INVOKE LOG
+Agent: montaiJoblibUtils
+Runtime ARN: arn:aws:bedrock-agentcore:us-east-1:015551053535:runtime/montaiJoblibUtils_montaiJoblibUtils-QJXLo03Jlv
+Region: us-east-1
+Session ID: none
+Started: 2026-07-21T15:23:06.496Z
+================================================================================
+
+[11:23:06.497] INVOKE REQUEST (Session: none)
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-21T15:23:06.497Z",
+  "agent": "montaiJoblibUtils",
+  "runtimeArn": "arn:aws:bedrock-agentcore:us-east-1:015551053535:runtime/montaiJoblibUtils_montaiJoblibUtils-QJXLo03Jlv",
+  "region": "us-east-1",
+  "prompt": "{\"prompt\": \"acn predictions\", \"job_type\": \"batch\"}"
+}
+--- END REQUEST ---
+
+[11:23:13.005] INVOKE RESPONSE (6508ms)
+
+--- RESPONSE ---
+{
+  "timestamp": "2026-07-21T15:23:13.007Z",
+  "durationMs": 6508,
+  "success": true,
+  "response": "{\n  \"query\": \"acn predictions\",\n  \"search_query\": \"predictions\",\n  \"classification\": {\n    \"known\": true,\n    \"job_type\": \"batch\",\n    \"confidence\": \"high\",\n    \"reason\": \"Caller provided job_type='batch'\"\n  },\n  \"strategy\": \"targeted\",\n  \"elapsed_ms\": 1228,\n  \"by_job_type\": {\n    \"batch\": {\n      \"job_type\": \"batch\",\n      \"query\": \"predictions\",\n      \"result_source\": \"job_definitions\",\n      \"count\": 0,\n      \"results\": [],\n      \"queues\": [\n        {\n          \"name\": \"boltz_predictions_g6e_2xlarge_400GB\",\n          \"arn\": \"arn:aws:batch:us-east-1:015551053535:job-queue/boltz_predictions_g6e_2xlarge_400GB\",\n          \"state\": \"ENABLED\",\n          \"priority\": 1,\n          \"status\": \"VALID\"\n        }\n      ],\n      \"notes\": [\n        \"Definition scan limited to 5 pages of ACTIVE job definitions; pass job_type='batch' explicitly for a targeted search.\"\n      ]\n    }\n  },\n  \"hits\": [],\n  \"primary\": null,\n  \"count\": 0\n}"
+}
+--- END RESPONSE ---
+

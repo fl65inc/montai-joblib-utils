@@ -1,0 +1,72 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "LambdaRead",
+      "Effect": "Allow",
+      "Action": [
+        "lambda:ListFunctions",
+        "lambda:GetFunction",
+        "lambda:ListTags"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "BatchRead",
+      "Effect": "Allow",
+      "Action": [
+        "batch:DescribeJobDefinitions",
+        "batch:DescribeJobQueues",
+        "batch:ListJobs",
+        "batch:DescribeJobs"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "SageMakerRead",
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:ListPipelines",
+        "sagemaker:DescribePipeline",
+        "sagemaker:ListPipelineExecutions",
+        "sagemaker:ListPipelineExecutionSteps",
+        "sagemaker:ListTrainingJobs",
+        "sagemaker:DescribeTrainingJob",
+        "sagemaker:ListHyperParameterTuningJobs",
+        "sagemaker:DescribeHyperParameterTuningJob"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "StepFunctionsRead",
+      "Effect": "Allow",
+      "Action": [
+        "states:ListStateMachines",
+        "states:DescribeStateMachine",
+        "states:ListExecutions",
+        "states:DescribeExecution"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "BedrockInvoke",
+      "Effect": "Allow",
+      "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+      ],
+      "Resource": "arn:aws:bedrock:*::foundation-model/*"
+    },
+    {
+      "Sid": "XRayWrite",
+      "Effect": "Allow",
+      "Action": [
+        "xray:PutTraceSegments",
+        "xray:PutTelemetryRecords",
+        "xray:GetSamplingRules",
+        "xray:GetSamplingTargets"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

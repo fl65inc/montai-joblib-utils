@@ -1,0 +1,21 @@
+================================================================================
+AGENTCORE INVOKE LOG
+Agent: montaiJoblibUtils
+Runtime ARN: arn:aws:bedrock-agentcore:us-east-1:015551053535:runtime/montaiJoblibUtils_montaiJoblibUtils-QJXLo03Jlv
+Region: us-east-1
+Session ID: none
+Started: 2026-07-21T15:07:09.862Z
+================================================================================
+
+[11:07:09.863] INVOKE REQUEST (Session: none)
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-21T15:07:09.863Z",
+  "agent": "montaiJoblibUtils",
+  "runtimeArn": "arn:aws:bedrock-agentcore:us-east-1:015551053535:runtime/montaiJoblibUtils_montaiJoblibUtils-QJXLo03Jlv",
+  "region": "us-east-1",
+  "prompt": "{\"prompt\": \"find batch jobs for acn\"}"
+}
+--- END REQUEST ---
+

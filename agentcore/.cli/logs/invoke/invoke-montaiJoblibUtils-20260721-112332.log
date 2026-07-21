@@ -1,0 +1,32 @@
+================================================================================
+AGENTCORE INVOKE LOG
+Agent: montaiJoblibUtils
+Runtime ARN: arn:aws:bedrock-agentcore:us-east-1:015551053535:runtime/montaiJoblibUtils_montaiJoblibUtils-QJXLo03Jlv
+Region: us-east-1
+Session ID: none
+Started: 2026-07-21T15:23:32.547Z
+================================================================================
+
+[11:23:32.549] INVOKE REQUEST (Session: none)
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-21T15:23:32.548Z",
+  "agent": "montaiJoblibUtils",
+  "runtimeArn": "arn:aws:bedrock-agentcore:us-east-1:015551053535:runtime/montaiJoblibUtils_montaiJoblibUtils-QJXLo03Jlv",
+  "region": "us-east-1",
+  "prompt": "{\"prompt\": \"acn_predictions\", \"job_type\": \"batch\"}"
+}
+--- END REQUEST ---
+
+[11:23:38.468] INVOKE RESPONSE (5920ms)
+
+--- RESPONSE ---
+{
+  "timestamp": "2026-07-21T15:23:38.469Z",
+  "durationMs": 5920,
+  "success": true,
+  "response": "{\n  \"query\": \"acn_predictions\",\n  \"search_query\": \"acn_predictions\",\n  \"classification\": {\n    \"known\": true,\n    \"job_type\": \"batch\",\n    \"confidence\": \"high\",\n    \"reason\": \"Caller provided job_type='batch'\"\n  },\n  \"strategy\": \"targeted\",\n  \"elapsed_ms\": 493,\n  \"by_job_type\": {\n    \"batch\": {\n      \"job_type\": \"batch\",\n      \"query\": \"acn_predictions\",\n      \"result_source\": \"job_definitions\",\n      \"count\": 1,\n      \"results\": [\n        {\n          \"name\": \"acn_predictions\",\n          \"arn\": \"arn:aws:batch:us-east-1:015551053535:job-definition/acn_predictions:2\",\n          \"revision\": 2,\n          \"status\": \"ACTIVE\",\n          \"image\": \"015551053535.dkr.ecr.us-east-1.amazonaws.com/montai-platform-engineering:acn_predictions\",\n          \"command\": [\n            \"poetry\",\n            \"run\",\n            \"python\",\n            \"generate_acn_predictions.py\",\n            \"--batch-offset\",\n            \"Ref::batch_offset\",\n            \"--batch-size\",\n            \"Ref::batch_size\",\n            \"--model-id\",\n            \"Ref::model_id\",\n            \"--task-name\",\n            \"Ref::task_name\"\n          ],\n          \"resources\": {\n            \"GPU\": \"1\",\n            \"VCPU\": \"32\",\n            \"MEMORY\": \"118784\"\n          },\n          \"platform_capabilities\": null,\n          \"tags\": [\n            \"aws:cloudformation:stack-name=MatrixCdkStack\",\n            \"aws:cloudformation:logical-id=acnpredictions\",\n            \"framework=matrix\",\n            \"team=computational_modeling\",\n            \"aws:cloudformation:stack-id=arn:aws:cloudformation:us-east-1:015551053535:stack/MatrixCdkStack/21f25830-b7ec-11ef-b29f-121f57b8574b\",\n            \"job_name=acn_predictions\"\n          ],\n          \"job_type\": \"batch\",\n          \"result_source\": \"job_definition\"\n        }\n      ],\n      \"queues\": []\n    }\n  },\n  \"hits\": [\n    {\n      \"name\": \"acn_predictions\",\n      \"arn\": \"arn:aws:batch:us-east-1:015551053535:job-definition/acn_predictions:2\",\n      \"revision\": 2,\n      \"status\": \"ACTIVE\",\n      \"image\": \"015551053535.dkr.ecr.us-east-1.amazonaws.com/montai-platform-engineering:acn_predictions\",\n      \"command\": [\n        \"poetry\",\n        \"run\",\n        \"python\",\n        \"generate_acn_predictions.py\",\n        \"--batch-offset\",\n        \"Ref::batch_offset\",\n        \"--batch-size\",\n        \"Ref::batch_size\",\n        \"--model-id\",\n        \"Ref::model_id\",\n        \"--task-name\",\n        \"Ref::task_name\"\n      ],\n      \"resources\": {\n        \"GPU\": \"1\",\n        \"VCPU\": \"32\",\n        \"MEMORY\": \"118784\"\n      },\n      \"platform_capabilities\": null,\n      \"tags\": [\n        \"aws:cloudformation:stack-name=MatrixCdkStack\",\n        \"aws:cloudformation:logical-id=acnpredictions\",\n        \"framework=matrix\",\n        \"team=computational_modeling\",\n        \"aws:cloudformation:stack-id=arn:aws:cloudformation:us-east-1:015551053535:stack/MatrixCdkStack/21f25830-b7ec-11ef-b29f-121f57b8574b\",\n        \"job_name=acn_predictions\"\n      ],\n      \"job_type\": \"batch\",\n      \"result_source\": \"job_definition\"\n    }\n  ],\n  \"primary\": {\n    \"name\": \"acn_predictions\",\n    \"arn\": \"arn:aws:batch:us-east-1:015551053535:job-definition/acn_predictions:2\",\n    \"revision\": 2,\n    \"status\": \"ACTIVE\",\n    \"image\": \"015551053535.dkr.ecr.us-east-1.amazonaws.com/montai-platform-engineering:acn_predictions\",\n    \"command\": [\n      \"poetry\",\n      \"run\",\n      \"python\",\n      \"generate_acn_predictions.py\",\n      \"--batch-offset\",\n      \"Ref::batch_offset\",\n      \"--batch-size\",\n      \"Ref::batch_size\",\n      \"--model-id\",\n      \"Ref::model_id\",\n      \"--task-name\",\n      \"Ref::task_name\"\n    ],\n    \"resources\": {\n      \"GPU\": \"1\",\n      \"VCPU\": \"32\",\n      \"MEMORY\": \"118784\"\n    },\n    \"platform_capabilities\": null,\n    \"tags\": [\n      \"aws:cloudformation:stack-name=MatrixCdkStack\",\n      \"aws:cloudformation:logical-id=acnpredictions\",\n      \"framework=matrix\",\n      \"team=computational_modeling\",\n      \"aws:cloudformation:stack-id=arn:aws:cloudformation:us-east-1:015551053535:stack/MatrixCdkStack/21f25830-b7ec-11ef-b29f-121f57b8574b\",\n      \"job_name=acn_predictions\"\n    ],\n    \"job_type\": \"batch\",\n    \"result_source\": \"job_definition\"\n  },\n  \"count\": 1\n}"
+}
+--- END RESPONSE ---
+

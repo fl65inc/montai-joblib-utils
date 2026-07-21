@@ -1,0 +1,32 @@
+================================================================================
+AGENTCORE INVOKE LOG
+Agent: montaiJoblibUtils
+Runtime ARN: arn:aws:bedrock-agentcore:us-east-1:015551053535:runtime/montaiJoblibUtils_montaiJoblibUtils-QJXLo03Jlv
+Region: us-east-1
+Session ID: none
+Started: 2026-07-21T15:10:59.355Z
+================================================================================
+
+[11:10:59.356] INVOKE REQUEST (Session: none)
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-21T15:10:59.356Z",
+  "agent": "montaiJoblibUtils",
+  "runtimeArn": "arn:aws:bedrock-agentcore:us-east-1:015551053535:runtime/montaiJoblibUtils_montaiJoblibUtils-QJXLo03Jlv",
+  "region": "us-east-1",
+  "prompt": "{\"prompt\": \"find batch jobs for acn\"}"
+}
+--- END REQUEST ---
+
+[11:11:06.881] INVOKE RESPONSE (7525ms)
+
+--- RESPONSE ---
+{
+  "timestamp": "2026-07-21T15:11:06.882Z",
+  "durationMs": 7525,
+  "success": true,
+  "response": "{\n  \"query\": \"{\\\"prompt\\\": \\\"find batch jobs for acn\\\"}\",\n  \"search_query\": \"prompt\",\n  \"classification\": {\n    \"known\": false,\n    \"job_type\": null,\n    \"confidence\": \"low\",\n    \"reason\": \"No job_type cue in query — will fan out across families\"\n  },\n  \"strategy\": \"parallel_fanout\",\n  \"elapsed_ms\": 1937,\n  \"by_job_type\": {\n    \"stepfunctions\": {\n      \"job_type\": \"stepfunctions\",\n      \"count\": 0,\n      \"error\": null,\n      \"results\": []\n    },\n    \"sagemaker_pipeline\": {\n      \"job_type\": \"sagemaker_pipeline\",\n      \"count\": 0,\n      \"error\": null,\n      \"results\": []\n    },\n    \"lambda\": {\n      \"job_type\": \"lambda\",\n      \"count\": 0,\n      \"error\": null,\n      \"results\": []\n    },\n    \"batch\": {\n      \"job_type\": \"batch\",\n      \"count\": 0,\n      \"error\": null,\n      \"results\": []\n    }\n  },\n  \"hits\": [],\n  \"primary\": null,\n  \"count\": 0\n}"
+}
+--- END RESPONSE ---
+

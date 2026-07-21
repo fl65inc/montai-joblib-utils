@@ -1,0 +1,20 @@
+================================================================================
+AGENTCORE DEPLOY LOG
+Command: deploy
+Started: 2026-07-21T14:56:58.970Z
+================================================================================
+
+
+[10:56:58] STEP: Load deployment target
+[10:57:00] Status: SUCCESS
+[10:57:00] Duration: 1.8s
+
+[10:57:00] STEP: Validate project
+[10:57:00] [ERROR] CDK project not found at /Users/jrowe/work/montai/on-demand-compute-ai/montai-joblib-utils-ai-mcp/agentcore/cdk. Run 'agentcore create' first.
+[10:57:00] Status: FAILED
+[10:57:00] Duration: 4ms
+
+================================================================================
+FAILED
+Total Duration: 1.8s
+================================================================================

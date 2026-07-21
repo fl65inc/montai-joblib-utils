@@ -1,0 +1,26 @@
+================================================================================
+AGENTCORE DEPLOY LOG
+Command: deploy
+Started: 2026-07-21T14:59:22.244Z
+================================================================================
+
+
+[10:59:22] STEP: Load deployment target
+[10:59:24] Status: SUCCESS
+[10:59:24] Duration: 1.9s
+
+[10:59:24] STEP: Validate project
+[10:59:26] Status: SUCCESS
+[10:59:26] Duration: 2.4s
+
+[10:59:27] STEP: Build CDK project
+[10:59:27] [ERROR] npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+sh: tsc: command not found
+
+[10:59:27] Status: FAILED
+[10:59:27] Duration: 226ms
+
+================================================================================
+FAILED
+Total Duration: 5.3s
+================================================================================

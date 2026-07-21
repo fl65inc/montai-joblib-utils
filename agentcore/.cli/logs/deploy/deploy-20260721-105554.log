@@ -1,0 +1,16 @@
+================================================================================
+AGENTCORE DEPLOY LOG
+Command: deploy
+Started: 2026-07-21T14:55:54.095Z
+================================================================================
+
+
+[10:55:54] STEP: Load deployment target
+[10:55:56] [ERROR] AWS Targets config file not found at: /Users/jrowe/work/montai/on-demand-compute-ai/montai-joblib-utils-ai-mcp/agentcore/aws-targets.json
+[10:55:56] Status: FAILED
+[10:55:56] Duration: 2.0s
+
+================================================================================
+FAILED
+Total Duration: 2.0s
+================================================================================
