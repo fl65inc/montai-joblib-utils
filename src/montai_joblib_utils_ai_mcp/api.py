@@ -43,10 +43,15 @@ logging.basicConfig(level=logging.INFO)
 class InvocationRequest(BaseModel):
     """AgentCore HTTP protocol — primary invocation payload."""
 
-    prompt: str
+    prompt: str | None = None
+    query: str | None = None
+    action: str = "discover"
     job_type: str | None = None
     max_results: int = 10
     force_refresh: bool = False
+    statuses: list[str] | None = None
+    state_machine_arn: str | None = None
+    state_machine_name: str | None = None
 
 
 app = FastAPI(
@@ -83,23 +88,93 @@ def ping() -> dict[str, str]:
 # ---------------------------------------------------------------------------
 
 
+def _dispatch_invocation(data: dict[str, Any]) -> dict[str, Any]:
+    """Route an AgentCore ``/invocations`` payload by ``action``.
+
+    Actions:
+      - ``discover`` (default) — classify + search (same as GET /discover)
+      - ``search_batch_runs`` — recent Batch run history with log streams
+      - ``describe_state_machine_tree`` — ASL leaf walk for a state machine
+
+    Back-compat: payloads without ``action`` behave as ``discover``, using
+    ``prompt`` (or ``query``) as the search string.
+    """
+    from montai_joblib_utils_ai_mcp.types import JOB_TYPES
+
+    action = str(data.get("action") or "discover").strip().lower()
+
+    # agentcore invoke '{"prompt": "acn"}' may double-wrap: unwrap inner JSON
+    prompt: str = str(data.get("prompt") or data.get("query") or "")
+    try:
+        import json as _json
+
+        inner = _json.loads(prompt)
+        if isinstance(inner, dict) and ("prompt" in inner or "action" in inner):
+            # Merge inner keys that the outer payload omitted
+            for key, val in inner.items():
+                if key not in data or data.get(key) in (None, ""):
+                    data[key] = val
+            if "prompt" in inner:
+                prompt = str(inner["prompt"])
+            action = str(data.get("action") or action).strip().lower()
+    except (TypeError, ValueError):
+        pass
+
+    if action in ("discover", "discover_compute"):
+        raw_jt = data.get("job_type")
+        job_type_val = raw_jt if raw_jt in JOB_TYPES else None
+        return discover_compute_impl(
+            query=prompt or str(data.get("query") or ""),
+            job_type=job_type_val,
+            max_results=int(data.get("max_results", 10)),
+            force_refresh=bool(data.get("force_refresh", False)),
+        )
+
+    if action in ("search_batch_runs", "batch_runs"):
+        statuses = data.get("statuses")
+        if isinstance(statuses, str):
+            statuses = [s.strip() for s in statuses.split(",") if s.strip()]
+        return search_batch_runs_impl(
+            query=data.get("query") or prompt or None,
+            statuses=statuses,
+            max_results=int(data.get("max_results", 20)),
+            max_per_queue=int(data.get("max_per_queue", 10)),
+            force_refresh=bool(data.get("force_refresh", False)),
+        )
+
+    if action in ("describe_state_machine_tree", "state_machine_tree"):
+        return describe_state_machine_tree_impl(
+            state_machine_arn=data.get("state_machine_arn"),
+            state_machine_name=data.get("state_machine_name"),
+        )
+
+    return {
+        "error": f"Unknown action {action!r}",
+        "supported_actions": [
+            "discover",
+            "search_batch_runs",
+            "describe_state_machine_tree",
+        ],
+    }
+
+
 @app.post("/invocations", tags=["agent"], summary="AgentCore primary invocation endpoint")
 async def invocations(request: Request) -> dict[str, Any]:
     """AgentCore HTTP protocol entrypoint.
 
-    Accepts a natural-language ``prompt`` and routes it through
-    ``discover_compute``.  Tolerates any Content-Type (agentcore CLI,
-    boto3, curl) by parsing the raw body as JSON directly.
+    Dispatches by ``action`` (default ``discover``). Tolerates any Content-Type
+    (agentcore CLI, boto3, curl) by parsing the raw body as JSON directly.
 
-    Request body (JSON):
-        ``{"prompt": "find batch jobs for acn_predictions"}``
-        ``{"prompt": "acn", "job_type": "batch", "max_results": 5}``
+    Request body (JSON) examples::
 
-    The ``agentcore invoke`` CLI wraps plain strings as
-    ``{"prompt": "..."}`` automatically.  If a nested JSON object is
-    detected inside ``prompt`` it is unwrapped transparently.
+        {"prompt": "find batch jobs for acn_predictions"}
+        {"prompt": "acn", "job_type": "batch", "max_results": 5}
+        {"action": "discover", "prompt": "acn_predictions", "job_type": "batch"}
+        {"action": "search_batch_runs", "query": "acn", "statuses": ["FAILED"]}
+        {"action": "describe_state_machine_tree", "state_machine_name": "matrix-foo"}
 
-    Returns the same shape as ``GET /discover``.
+    The ``agentcore invoke`` CLI wraps plain strings as ``{"prompt": "..."}``
+    automatically. Nested JSON inside ``prompt`` is unwrapped transparently.
     """
     import json as _json
 
@@ -112,28 +187,7 @@ async def invocations(request: Request) -> dict[str, Any]:
     except (_json.JSONDecodeError, ValueError):
         data = {"prompt": raw.decode(errors="replace")}
 
-    # agentcore invoke '{"prompt": "acn"}' double-wraps: unwrap inner JSON
-    prompt: str = str(data.get("prompt", ""))
-    try:
-        inner = _json.loads(prompt)
-        if isinstance(inner, dict) and "prompt" in inner:
-            if "job_type" not in data and "job_type" in inner:
-                data["job_type"] = inner["job_type"]
-            prompt = str(inner["prompt"])
-    except (_json.JSONDecodeError, TypeError, ValueError):
-        pass
-
-    from montai_joblib_utils_ai_mcp.types import JOB_TYPES
-
-    raw_jt = data.get("job_type")
-    job_type_val = raw_jt if raw_jt in JOB_TYPES else None
-
-    return discover_compute_impl(
-        query=prompt,
-        job_type=job_type_val,
-        max_results=int(data.get("max_results", 10)),
-        force_refresh=bool(data.get("force_refresh", False)),
-    )
+    return _dispatch_invocation(data)
 
 
 # ---------------------------------------------------------------------------
